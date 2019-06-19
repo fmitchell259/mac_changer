@@ -18,12 +18,20 @@ def create_mac():
     return new_mac
 
 
-n_mac = create_mac()
+def change_mac():
 
-print("New Mac Address randomly created is: " + str(n_mac))
+    n_mac = create_mac()
 
-subprocess.call(["sudo", "ifconfig", "en0", "down"])
-subprocess.call(["sudo", "ifconfig", "en0", "ether", n_mac])
-subprocess.call(["sudo", "ifconfig", "en0", "up"])
-print("[+] MAC address changed.")
-subprocess.call(["sudo", "ifconfig", "en0"])
+    print("New Mac Address randomly created is: " + str(n_mac))
+
+    subprocess.call(["sudo", "ifconfig", "en0", "down"])
+    subprocess.call(["sudo", "ifconfig", "en0", "ether", n_mac])
+    subprocess.call(["sudo", "ifconfig", "en0", "up"])
+    print("[+] MAC address changed.")
+    subprocess.call(["sudo", "ifconfig", "en0"])
+
+
+if __name__ == '__main__':
+    change_mac()
+
+
