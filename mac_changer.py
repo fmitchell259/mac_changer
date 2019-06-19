@@ -14,7 +14,6 @@ def create_mac():
             new_mac += int_string
         else:
             new_mac += int_string + ":"
-    print(new_mac)
     return new_mac
 
 
@@ -25,6 +24,14 @@ def change_mac(interface):
     print("New Mac Address randomly created is: " + str(n_mac))
 
     subprocess.call(["sudo", "ifconfig", interface, "ether", n_mac])
+    subprocess.call(["sudo", "ifconfig", interface, "up"])
+    print("[+] MAC address changed.")
+    subprocess.call(["sudo", "ifconfig", interface])
+
+
+if __name__ == '__main__':
+    i_face = input("Please enter your interface name.")
+    change_mac(i_face)", n_mac])
     subprocess.call(["sudo", "ifconfig", interface, "up"])
     print("[+] MAC address changed.")
     subprocess.call(["sudo", "ifconfig", interface])
