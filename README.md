@@ -1,2 +1,3 @@
 # mac_changer
-a very small program that will change the MAC address on macos. 
+A very small program that will change the MAC address on macos. 
+Must be run from the terminal. 
