@@ -22,7 +22,8 @@ n_mac = create_mac()
 
 print("New Mac Address randomly created is: " + str(n_mac))
 
-subprocess.call("sudo ifconfig en0 down", shell=True)
-subprocess.call("ifconfig en0 | grep ether", shell=True)
-subprocess.call("sudo ifconfig en0 ether" + n_mac, shell=True)
-subprocess.call("sudo ifconfig en0 up", shell=True)
+subprocess.call(["sudo", "ifconfig", "en0", "down"])
+subprocess.call(["sudo", "ifconfig", "en0", "ether", n_mac])
+subprocess.call(["sudo", "ifconfig", "en0", "up"])
+print("[+] MAC address changed.")
+subprocess.call(["sudo", "ifconfig", "en0"])
