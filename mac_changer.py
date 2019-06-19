@@ -31,14 +31,7 @@ def change_mac(interface):
 
 if __name__ == '__main__':
     i_face = input("Please enter your interface name.")
-    change_mac(i_face)", n_mac])
-    subprocess.call(["sudo", "ifconfig", interface, "up"])
-    print("[+] MAC address changed.")
-    subprocess.call(["sudo", "ifconfig", interface])
-
-
-if __name__ == '__main__':
-    i_face = input("Please enter your interface name.")
     change_mac(i_face)
-    
+
+
 
