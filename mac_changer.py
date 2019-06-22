@@ -2,7 +2,7 @@
 
 import subprocess
 import random
-
+import re
 
 def create_mac():
 
@@ -25,13 +25,31 @@ def change_mac(interface):
 
     subprocess.call(["sudo", "ifconfig", interface, "ether", n_mac])
     subprocess.call(["sudo", "ifconfig", interface, "up"])
-    print("[+] MAC address changed.")
-    subprocess.call(["sudo", "ifconfig", interface])
+    print("\n[+] MAC address changing...")
+
+
+def get_current_mac(interface):
+    
+    ifconfig_result = subprocess.check_output(["ifconfig", interface])
+    mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
+
+    if mac_search_result:
+        return mac_search_result.group(0)
+    else:
+        print("No MAC address found.")
 
 
 if __name__ == '__main__':
+
     i_face = input("Please enter your interface name.")
+    first_mac = get_current_mac(i_face)
     change_mac(i_face)
+    current_mac = get_current_mac(i_face)
+    if current_mac != first_mac:
+        print("\n[+] MAC address succefully changed.\n")
+    else:
+        print("[-] MAC address could not be changed.")
+
 
 
 
